@@ -5,6 +5,11 @@ import { terser } from 'rollup-plugin-terser';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 import pkg from './package.json';
 
+import postcss from 'rollup-plugin-postcss';
+import postcssModules from 'postcss-modules';
+
+const cssExportMap = {};
+
 export default {
   input: 'src/index.js',
   external: ['react', 'react-dom', 'prop-types'],
@@ -17,5 +22,19 @@ export default {
     babel({ exclude: 'node_modules/**' }),
     terser(),
     sizeSnapshot(),
+    postcss({
+      plugins: [
+        postcssModules({
+          getJSON (id, exportTokens) {
+            cssExportMap[id] = exportTokens;
+          }
+        })
+      ],
+      getExportNamed: false,
+      getExport (id) {
+        return cssExportMap[id];
+      },
+      extract: 'dist/styles.css',
+    })
   ],
 };
