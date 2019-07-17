@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "build:w": "rollup -c -w",
+    "lint": "eslint ./src"
   },
   "repository": {
     "type": "git",
@@ -24,10 +26,13 @@
     "@babel/plugin-proposal-export-default-from": "^7.5.2",
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.2",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-module-resolver": "^3.2.0",
     "eslint": "^6.0.1",
+    "eslint-plugin-react": "^7.14.2",
     "postcss-modules": "^1.4.1",
+    "prop-types": "^15.7.2",
     "rollup": "^1.17.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.1",

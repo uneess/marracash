@@ -1,15 +1,28 @@
 "use strict";
 
 module.exports = {
-  "env": {
-    "browser": true,
-    "node": false,
-    "es6": true
-  },
+  "plugins": [
+    "react"
+  ],
   "parserOptions": {
+    "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
-  }
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "strict": 0
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ]
 };
