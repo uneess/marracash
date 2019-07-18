@@ -4,7 +4,9 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "test": "",
+    "test": "npm run test:cmp && npm run test:unit",
+    "test:cmp": "jest",
+    "test:unit": "mocha tests/unit --recursive -name '*.test.js' --require @babel/register --colors",
     "build": "rollup -c",
     "build:w": "rollup -c -w",
     "lint": "eslint ./src"
@@ -26,13 +28,19 @@
     "@babel/plugin-proposal-export-default-from": "^7.5.2",
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.5.5",
     "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.8.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-module-resolver": "^3.2.0",
+    "chai": "^4.2.0",
     "eslint": "^6.0.1",
     "eslint-plugin-react": "^7.14.2",
-    "postcss-modules": "^1.4.1",
+    "jest": "^24.8.0",
+    "jest-transform-css": "^2.0.0",
+    "mocha": "^6.1.4",
     "prop-types": "^15.7.2",
+    "react-test-renderer": "^16.8.6",
     "rollup": "^1.17.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.1",
@@ -40,5 +48,14 @@
     "rollup-plugin-postcss": "^2.0.3",
     "rollup-plugin-size-snapshot": "^0.9.0",
     "rollup-plugin-terser": "^5.1.1"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "tester"
+    ],
+    "transform": {
+      "^.+\\.js$": "babel-jest",
+      ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css"
+    }
   }
 }

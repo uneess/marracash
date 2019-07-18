@@ -19,7 +19,8 @@ module.exports = {
     "es6": true,
     "browser": true,
     "node": true,
-    "mocha": true
+    "mocha": true,
+    "jest": true,
   },
   "extends": [
     "eslint:recommended",

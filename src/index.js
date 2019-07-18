@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import accounting from 'accounting';
 import PropTypes from 'prop-types';
 import { getFormattedPrice } from './helpers';
+import './styles/index.css'
 
 export default class PriceInput extends Component {
   constructor(props, context) {
@@ -89,13 +90,13 @@ PriceInput.defaultProps = {
   currency: {
     decimal: ",",
     thousand: ".",
-    symbol: "$",
+    symbol: "€",
     precision: 2
   },
   showSymbol: true,
   defaultValue: 0,
   className: "",
-  id: "#vx-price-input",
+  id: "vx-price-input",
   style: {}
 }
 

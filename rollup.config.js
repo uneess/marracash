@@ -6,9 +6,6 @@ import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 import pkg from './package.json';
 
 import postcss from 'rollup-plugin-postcss';
-import postcssModules from 'postcss-modules';
-
-const cssExportMap = {};
 
 export default {
   input: 'src/index.js',
@@ -23,17 +20,8 @@ export default {
     terser(),
     sizeSnapshot(),
     postcss({
-      plugins: [
-        postcssModules({
-          getJSON (id, exportTokens) {
-            cssExportMap[id] = exportTokens;
-          }
-        })
-      ],
+      plugins: [],
       getExportNamed: false,
-      getExport (id) {
-        return cssExportMap[id];
-      },
       extract: 'dist/styles.css',
     })
   ],
