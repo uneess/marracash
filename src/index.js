@@ -7,9 +7,8 @@ import './styles/index.css'
 export default class PriceInput extends Component {
   constructor(props, context) {
     super(props, context);
-
+    
     const { defaultValue, showSymbol, currency } = props;
-
     const value = !isNaN(defaultValue) ? defaultValue / 100 : 0;
 
     this.state = {
@@ -22,10 +21,12 @@ export default class PriceInput extends Component {
   }
 
   UNSAFE_componentWillMount() {
+    // listening for a click outside the input
     document.addEventListener('click', this._handleFormatting, false);
   }
 
   componentWillUnmount() {
+    // Unregistering event listener
     document.removeEventListener('click', this._handleFormatting, false);
   }
 
@@ -50,17 +51,24 @@ export default class PriceInput extends Component {
   }
 
   handlePriceChange(e) {
-    const { value } = e.target;
-    const { currency: { decimal } } = this.props;
+    // Price value gets unformated and updated in the state
+    // Price_shown remains if not empty
+    // if empty, we check for defaultTo value and if not empty we format it or default to empty string
 
-    const price_value = accounting.unformat(value, decimal);
-    const price_shown = value;
+    const { value } = e.target;
+    const { currency, showSymbol, defaultTo } = this.props;
+
+    const default_to_specified = defaultTo && !isNaN(defaultTo);
+
+    const price_value = accounting.unformat(value, currency.decimal);
+    const price_shown = value || default_to_specified ? getFormattedPrice(defaultTo / 100, currency, showSymbol) : '';
 
     this.setState({
       price_value,
       price_shown
     });
 
+    // send event via prop
     this.props.onChange(price_value * 100);
   }
 
@@ -102,7 +110,8 @@ PriceInput.defaultProps = {
   className: "",
   id: "vx-price-input",
   style: {},
-  placeholder: ""
+  placeholder: "",
+  defaultTo: null
 }
 
 PriceInput.propTypes = {
@@ -113,5 +122,6 @@ PriceInput.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   id: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  defaultTo: PropTypes.number
 }

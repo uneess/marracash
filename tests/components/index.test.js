@@ -64,4 +64,11 @@ describe("Price input component", () => {
 
     expect(testInstance.findByType('input').props.id).toEqual("overriden-id");
   })
+
+  test("Add placeholder", () => {
+    const Component = renderer.create(<PriceInput placeholder="Add value" />);
+    const testInstance = Component.root;
+
+    expect(testInstance.findByType('input').props.placeholder).toEqual("Add value");
+  })
 });
