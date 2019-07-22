@@ -30,8 +30,13 @@ export default class PriceInput extends Component {
     document.removeEventListener('click', this._handleFormatting, false);
   }
 
-  shouldComponentUpdate() {
-    return true
+  UNSAFE_componentWillReceiveProps(newProps){
+    if (!newProps.defaultValue) {
+      this.setState({
+        price_value: 0,
+      price_shown: ''
+      })
+    }
   }
 
   _handleFormatting(e) {
