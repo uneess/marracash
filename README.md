@@ -53,7 +53,7 @@ import 'vx-price-input-lib/dist/styles.css';
 | id    | To override default id | false | string | vx-price-input|
 | styles    | Provide inline styles to input element | false | object | |
 | className    | Provide className to input element | false | string | |
-| defaultValue | Default value provided to the input element | false | number | | 
+| defaultValue | Default value provided to the input element in **cents** | false | number | | 
 
 
 ## Running the tests

@@ -37,14 +37,14 @@ describe("Price input component", () => {
   });
 
   test("Input to have formatted default value if passed", () => {
-    const Component = renderer.create(<PriceInput defaultValue={10} />);
+    const Component = renderer.create(<PriceInput defaultValue={1000} />);
     const testInstance = Component.root;
 
     expect(testInstance.findByType('input').props.value).toEqual("€10,00");
   })
 
   test("Input to have formatted default value if passed + showSymbol is false", () => {
-    const Component = renderer.create(<PriceInput defaultValue={10} showSymbol={false} />);
+    const Component = renderer.create(<PriceInput defaultValue={1000} showSymbol={false} />);
     const testInstance = Component.root;
 
     expect(testInstance.findByType('input').props.value).toEqual("10,00");

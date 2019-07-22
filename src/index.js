@@ -10,9 +10,11 @@ export default class PriceInput extends Component {
 
     const { defaultValue, showSymbol, currency } = props;
 
+    const value = !isNaN(defaultValue) ? defaultValue / 100 : 0;
+
     this.state = {
-      price_value: defaultValue,
-      price_shown: getFormattedPrice(defaultValue, currency, showSymbol),
+      price_value: value,
+      price_shown: getFormattedPrice(value, currency, showSymbol),
       editing: false,
     }
 
