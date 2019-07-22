@@ -69,13 +69,15 @@ export default class PriceInput extends Component {
     const {
       className,
       style,
-      id
+      id,
+      placeholder
     } = this.props;
 
     return (
       <div>
         <input
           style={style}
+          placeholder={placeholder}
           className={className}
           id={id}
           ref={el => this.input = el}
@@ -99,7 +101,8 @@ PriceInput.defaultProps = {
   defaultValue: 0,
   className: "",
   id: "vx-price-input",
-  style: {}
+  style: {},
+  placeholder: ""
 }
 
 PriceInput.propTypes = {
@@ -110,4 +113,5 @@ PriceInput.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   id: PropTypes.string,
+  placeholder: PropTypes.string
 }
