@@ -70,6 +70,14 @@ To run a unit test run this command
 npm run test:unit
 ```
 
+## Component tests
+
+To run a unit test run this command
+
+```
+npm run test:cmp
+```
+
 ## Deployment
 
 For deploying a fix please check with authors.
