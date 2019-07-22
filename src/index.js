@@ -59,7 +59,7 @@ export default class PriceInput extends Component {
       price_shown
     });
 
-    this.props.onChange(price_value);
+    this.props.onChange(price_value * 100);
   }
 
   render() {
