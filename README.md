@@ -54,7 +54,7 @@ import 'vx-price-input-lib/dist/styles.css';
 | styles    | Provide inline styles to input element | false | object | |
 | placeholder    | Provide className to input element | false | string | |
 | className    | Provide placeholder to input element | false | string | |
-| defaultTo    | Control what shows when input gets cleared | false | number | |
+| AllowEmpty    | Ability to control what happens if price input gets cleared | false | boolean | TRUE |
 | defaultValue | Default value provided to the input element in **cents** | false | number | | 
 
 

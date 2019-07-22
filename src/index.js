@@ -53,15 +53,14 @@ export default class PriceInput extends Component {
   handlePriceChange(e) {
     // Price value gets unformated and updated in the state
     // Price_shown remains if not empty
-    // if empty, we check for defaultTo value and if not empty we format it or default to empty string
+    // AllowEmpty === true and value is '' will result in empty input value 
+    // AllowEmpty === true and value is ' ' will result in $0.00 after clicking outside the input
 
     const { value } = e.target;
-    const { currency, showSymbol, defaultTo } = this.props;
-
-    const default_to_specified = defaultTo && !isNaN(defaultTo);
-
-    const price_value = accounting.unformat(value, currency.decimal);
-    const price_shown = value || default_to_specified ? getFormattedPrice(defaultTo / 100, currency, showSymbol) : '';
+    const { currency: { decimal }, allowEmpty } = this.props;
+    
+    const price_value = accounting.unformat(value, decimal);
+    const price_shown = value ? value : allowEmpty ? '' : ' ';
 
     this.setState({
       price_value,
@@ -111,7 +110,7 @@ PriceInput.defaultProps = {
   id: "vx-price-input",
   style: {},
   placeholder: "",
-  defaultTo: null
+  allowEmpty: true
 }
 
 PriceInput.propTypes = {
@@ -123,5 +122,5 @@ PriceInput.propTypes = {
   style: PropTypes.object,
   id: PropTypes.string,
   placeholder: PropTypes.string,
-  defaultTo: PropTypes.number
+  allowEmpty: PropTypes.bool,
 }
