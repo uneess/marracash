@@ -7,7 +7,7 @@ import './styles/index.css'
 export default class PriceInput extends Component {
   constructor(props, context) {
     super(props, context);
-    
+
     const { defaultValue, showSymbol, currency } = props;
     const value = !isNaN(defaultValue) ? defaultValue / 100 : 0;
 
@@ -58,7 +58,7 @@ export default class PriceInput extends Component {
 
     const { value } = e.target;
     const { currency: { decimal }, allowEmpty } = this.props;
-    
+
     const price_value = accounting.unformat(value, decimal);
     const price_shown = value ? value : allowEmpty ? '' : ' ';
 
@@ -80,24 +80,20 @@ export default class PriceInput extends Component {
       placeholder
     } = this.props;
 
-    return (
-      <div>
-        <input
-          style={style}
-          placeholder={placeholder}
-          className={className}
-          id={id}
-          ref={el => this.input = el}
-          onChange={this.handlePriceChange.bind(this)}
-          value={price_shown}
-        />
-      </div>
-    )
+    return <input
+      style={style}
+      placeholder={placeholder}
+      className={className}
+      id={id}
+      ref={el => this.input = el}
+      onChange={this.handlePriceChange.bind(this)}
+      value={price_shown}
+    />
   }
 }
 
 PriceInput.defaultProps = {
-  onChange: () => {},
+  onChange: () => { },
   currency: {
     decimal: ",",
     thousand: ".",
