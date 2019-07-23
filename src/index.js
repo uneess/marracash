@@ -31,10 +31,10 @@ export default class PriceInput extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(newProps){
-    if (!newProps.defaultValue) {
+    if (!newProps.defaultValue && isNaN(newProps.defaultProps)) {
       this.setState({
         price_value: 0,
-      price_shown: ''
+        price_shown: ''
       })
     }
   }
