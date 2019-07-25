@@ -8,11 +8,10 @@ export const formatNumber = (price, { precision, thousand, decimal }) => {
   return accounting.formatNumber(price, precision, thousand, decimal);
 }
 
-
 export const getFormattedPrice = (price, currency, show_symbol) => {
   const { decimal, precision } = currency;
   
-  if (!price) return;
+  if (!price && price !== 0) return;
   if (typeof price === "number") price = price.toString();
 
   let is_formatted;

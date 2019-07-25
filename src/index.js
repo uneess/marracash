@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import accounting from 'accounting';
 import PropTypes from 'prop-types';
 import { getFormattedPrice } from './helpers';
+import { isNumber } from './helpers/utils';
 import './styles/index.css'
 
 export default class PriceInput extends Component {
@@ -9,7 +10,7 @@ export default class PriceInput extends Component {
     super(props, context);
 
     const { defaultValue, showSymbol, currency } = props;
-    const value = !isNaN(defaultValue) ? defaultValue / 100 : 0;
+    const value = isNumber(defaultValue) ? defaultValue / 100 : 0;
 
     this.state = {
       price_value: value,
@@ -31,7 +32,7 @@ export default class PriceInput extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(newProps){
-    if (!newProps.defaultValue && isNaN(newProps.defaultProps)) {
+    if (!newProps.defaultValue && !isNumber(newProps.defaultValue)) {
       this.setState({
         price_value: 0,
         price_shown: ''
@@ -40,12 +41,16 @@ export default class PriceInput extends Component {
   }
 
   _handleFormatting(e) {
-    const { value } = this.input;
-
+    let { value } = this.input;
     // Value didn't change or the area clicked in is the same as input area will result in stopping the process
     if (this.input.contains(e.target)) return;
 
-    const { currency, showSymbol } = this.props;
+    const { currency, showSymbol, allowEmpty } = this.props;
+
+    if (!allowEmpty && !value && value !== 0){
+      value = 0;
+    }
+
     const price_shown = getFormattedPrice(value, currency, showSymbol)
 
     if (value === price_shown) return;
@@ -62,10 +67,10 @@ export default class PriceInput extends Component {
     // AllowEmpty === true and value is ' ' will result in $0.00 after clicking outside the input
 
     const { value } = e.target;
-    const { currency: { decimal }, allowEmpty } = this.props;
+    const { currency } = this.props;
 
-    const price_value = accounting.unformat(value, decimal);
-    const price_shown = value ? value : allowEmpty ? '' : ' ';
+    const price_value = accounting.unformat(value, currency.decimal);
+    const price_shown = value;
 
     this.setState({
       price_value,
