@@ -9,8 +9,8 @@ export default class PriceInput extends Component {
   constructor(props, context) {
     super(props, context);
 
-    const { defaultValue, showSymbol, currency } = props;
-    const value = isNumber(defaultValue) ? defaultValue / 100 : 0;
+    const { defaultValue, showSymbol, currency, allowEmpty } = props;
+    const value = isNumber(defaultValue) ? defaultValue / 100 : allowEmpty ? '' : 0;
 
     this.state = {
       price_value: value,
