@@ -1,4 +1,4 @@
-# Veylinx price input component library
+# Marracash
 
 Lightweight & easy to use react component as a price input.
 
