@@ -1,6 +1,6 @@
 # Marracash
 
-Lightweight & easy to use react component as a price input.
+Lightweight & easy to use react currency input component.
 
 ## Getting Started
 
@@ -19,7 +19,7 @@ A step by step series of examples that tell you how to include and use the libra
 pull the repository to you local machine by running this command
 
 ```
-npm i -S veylinx/marracash
+npm i -S marracash
 ```
 
 And voila you have the module in your node_modules
