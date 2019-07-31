@@ -19,7 +19,7 @@ A step by step series of examples that tell you how to include and use the libra
 pull the repository to you local machine by running this command
 
 ```
-npm i --S bitbucket:veylinx/vx-price-input-lib
+npm i -S veylinx/marracash
 ```
 
 And voila you have the module in your node_modules
@@ -28,16 +28,16 @@ you only need to import the module to your project now by doing
 
 ```
 //ES6 syntax
-import PriceInput from 'vx-price-input-lib';
+import PriceInput from 'marracash';
 or
 //pure js syntax
-var PriceInput = require('vx-price-input-lib')
+var PriceInput = require('marracash')
 ```
 
 To add default component styles
 ```
 //ES6 syntax
-import 'vx-price-input-lib/dist/styles.css';
+import 'marracash/dist/styles.css';
 ```
 
 ## Usage
