@@ -99,10 +99,3 @@ We use npm for versioning
 ```
 npm version patch/minor/major
 ```
-## Authors
-
-* **Farid Ouachrar** 
-
-## License
-
-This project is licensed under the Veylinx licence.
