@@ -28,10 +28,10 @@ you only need to import the module to your project now by doing
 
 ```
 //ES6 syntax
-import PriceInput from 'marracash';
+import Marracash from 'marracash';
 or
 //pure js syntax
-var PriceInput = require('marracash')
+const Marracash = require('marracash')
 ```
 
 To add default component styles
@@ -43,7 +43,7 @@ import 'marracash/dist/styles.css';
 ## Usage
 
 ```
-<PriceInput />
+<Marracash />
 ```
 
 | Props        | definition           | required  | type | default value |

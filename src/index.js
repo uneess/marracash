@@ -5,7 +5,7 @@ import { getFormattedPrice } from './helpers';
 import { isNumber } from './helpers/utils';
 import './styles/index.css'
 
-export default class PriceInput extends Component {
+export default class Marracash extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -102,7 +102,7 @@ export default class PriceInput extends Component {
   }
 }
 
-PriceInput.defaultProps = {
+Marracash.defaultProps = {
   onChange: () => { },
   currency: {
     decimal: ",",
@@ -119,7 +119,7 @@ PriceInput.defaultProps = {
   allowEmpty: true
 }
 
-PriceInput.propTypes = {
+Marracash.propTypes = {
   currency: PropTypes.object,
   onChange: PropTypes.func,
   showSymbol: PropTypes.bool,
