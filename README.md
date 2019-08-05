@@ -54,6 +54,7 @@ import 'marracash/dist/styles.css';
 | styles    | Provide inline styles to input element | false | object | |
 | placeholder    | Provide className to input element | false | string | |
 | className    | Provide placeholder to input element | false | string | |
+| onChange    | Function that sends back the price entered whenever a change is made | false | Function | 0 |
 | AllowEmpty    | Ability to control what happens if price input gets cleared | false | boolean | TRUE |
 | defaultValue | Default value provided to the input element in **cents** | false | number | | 
 

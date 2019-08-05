@@ -112,8 +112,7 @@ Marracash.defaultProps = {
   },
   showSymbol: true,
   defaultValue: 0,
-  className: "",
-  id: "vx-price-input",
+  className: "vx-price-input",
   style: {},
   placeholder: "",
   allowEmpty: true

@@ -23,8 +23,7 @@ describe("Price input component", () => {
       },
       showSymbol: true,
       defaultValue: 0,
-      className: "",
-      id: "vx-price-input",
+      className: "vx-price-input",
       style: {}
     }
 
