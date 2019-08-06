@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import accounting from 'accounting';
 import PropTypes from 'prop-types';
 import { getFormattedPrice } from './helpers';
 import { isNumber } from './helpers/utils';
 import './styles/index.css'
 
-export default class Marracash extends Component {
+export default class Marracash extends PureComponent {
   constructor(props, context) {
     super(props, context);
 
@@ -36,6 +36,14 @@ export default class Marracash extends Component {
       this.setState({
         price_value: 0,
         price_shown: ''
+      })
+    }else if (newProps.id !== this.props.id) {
+      const { defaultValue, showSymbol, currency, allowEmpty } = newProps;
+      const value = isNumber(defaultValue) ? defaultValue / 100 : allowEmpty ? '' : 0;
+
+      this.setState({
+        price_value: value,
+        price_shown: getFormattedPrice(value, currency, showSymbol)
       })
     }
   }
