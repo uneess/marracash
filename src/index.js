@@ -48,6 +48,10 @@ export default class Marracash extends PureComponent {
     }
   }
 
+  getReturnedPrice(val, decimal){
+    return parseFloat((accounting.unformat(val, decimal) * 100).toFixed(2));
+  }
+
   _handleFormatting(e) {
     let { value } = this.input;
     // Value didn't change or the area clicked in is the same as input area will result in stopping the process
@@ -63,9 +67,10 @@ export default class Marracash extends PureComponent {
 
     if (value === price_shown) return;
 
+
     this.setState({
       price_shown
-    })
+    }, () => this.props.onChange(this.getReturnedPrice(price_shown, currency.decimal)));
   }
 
   handlePriceChange(e) {
@@ -75,7 +80,7 @@ export default class Marracash extends PureComponent {
     // AllowEmpty === true and value is ' ' will result in $0.00 after clicking outside the input
 
     const { value } = e.target;
-    const { currency } = this.props;
+    const { currency, showSymbol } = this.props;
 
     const price_value = accounting.unformat(value, currency.decimal);
     const price_shown = value;
@@ -85,8 +90,9 @@ export default class Marracash extends PureComponent {
       price_shown
     });
 
+    const val = getFormattedPrice(value, currency, showSymbol);
     // send event via prop
-    this.props.onChange(price_value * 100);
+    this.props.onChange(this.getReturnedPrice(val, currency.decimal));
   }
 
   render() {
