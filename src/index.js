@@ -1,54 +1,62 @@
-import React, { PureComponent } from 'react'
-import accounting from 'accounting';
-import PropTypes from 'prop-types';
-import { getFormattedPrice } from './helpers';
-import { isNumber } from './helpers/utils';
-import './styles/index.css'
+import React, { PureComponent } from "react";
+import accounting from "accounting";
+import PropTypes from "prop-types";
+import { getFormattedPrice } from "./helpers";
+import { isNumber } from "./helpers/utils";
+import "./styles/index.css";
 
 export default class Marracash extends PureComponent {
   constructor(props, context) {
     super(props, context);
 
     const { defaultValue, showSymbol, currency, allowEmpty } = props;
-    const value = isNumber(defaultValue) ? defaultValue / 100 : allowEmpty ? '' : 0;
+    const value = isNumber(defaultValue)
+      ? defaultValue / 100
+      : allowEmpty
+      ? ""
+      : 0;
 
     this.state = {
       price_value: value,
       price_shown: getFormattedPrice(value, currency, showSymbol),
-      editing: false,
-    }
+      editing: false
+    };
 
     this._handleFormatting = this._handleFormatting.bind(this);
   }
 
   componentWillMount() {
     // listening for a click outside the input
-    document.addEventListener('click', this._handleFormatting, false);
+    document.addEventListener("click", this._handleFormatting, false);
   }
 
   componentWillUnmount() {
     // Unregistering event listener
-    document.removeEventListener('click', this._handleFormatting, false);
+    document.removeEventListener("click", this._handleFormatting, false);
   }
 
-  UNSAFE_componentWillReceiveProps(newProps){
+  UNSAFE_componentWillReceiveProps(newProps) {
     if (!newProps.defaultValue && !isNumber(newProps.defaultValue)) {
       this.setState({
         price_value: 0,
-        price_shown: ''
-      })
-    }else if (newProps.id !== this.props.id) {
+        price_shown: ""
+      });
+    } else if (newProps.id !== this.props.id) {
       const { defaultValue, showSymbol, currency, allowEmpty } = newProps;
-      const value = isNumber(defaultValue) ? defaultValue / 100 : allowEmpty ? '' : 0;
+      const value = isNumber(defaultValue)
+        ? defaultValue / 100
+        : allowEmpty
+        ? ""
+        : 0;
 
       this.setState({
         price_value: value,
         price_shown: getFormattedPrice(value, currency, showSymbol)
-      })
+      });
     }
   }
 
-  getReturnedPrice(val, decimal){
+  getReturnedPrice(val, decimal) {
     return parseFloat((accounting.unformat(val, decimal) * 100).toFixed(2));
   }
 
@@ -59,24 +67,29 @@ export default class Marracash extends PureComponent {
 
     const { currency, showSymbol, allowEmpty } = this.props;
 
-    if (!allowEmpty && !value && value !== 0){
+    if (!allowEmpty && !value && value !== 0) {
       value = 0;
     }
 
-    const price_shown = getFormattedPrice(value, currency, showSymbol)
+    const price_shown = getFormattedPrice(value, currency, showSymbol);
 
     if (value === price_shown) return;
 
-
-    this.setState({
-      price_shown
-    }, () => this.props.onChange(this.getReturnedPrice(price_shown, currency.decimal)));
+    this.setState(
+      {
+        price_shown
+      },
+      () =>
+        this.props.onChange(
+          this.getReturnedPrice(price_shown, currency.decimal)
+        )
+    );
   }
 
   handlePriceChange(e) {
     // Price value gets unformated and updated in the state
     // Price_shown remains if not empty
-    // AllowEmpty === true and value is '' will result in empty input value 
+    // AllowEmpty === true and value is '' will result in empty input value
     // AllowEmpty === true and value is ' ' will result in $0.00 after clicking outside the input
 
     const { value } = e.target;
@@ -97,27 +110,24 @@ export default class Marracash extends PureComponent {
 
   render() {
     const { price_shown } = this.state;
-    const {
-      className,
-      style,
-      id,
-      placeholder
-    } = this.props;
+    const { className, style, id, placeholder } = this.props;
 
-    return <input
-      style={style}
-      placeholder={placeholder}
-      className={className}
-      id={id}
-      ref={el => this.input = el}
-      onChange={this.handlePriceChange.bind(this)}
-      value={price_shown}
-    />
+    return (
+      <input
+        style={style}
+        placeholder={placeholder}
+        className={className}
+        id={id}
+        ref={el => (this.input = el)}
+        onChange={this.handlePriceChange.bind(this)}
+        value={price_shown}
+      />
+    );
   }
 }
 
 Marracash.defaultProps = {
-  onChange: () => { },
+  onChange: () => {},
   currency: {
     decimal: ",",
     thousand: ".",
@@ -130,7 +140,7 @@ Marracash.defaultProps = {
   style: {},
   placeholder: "",
   allowEmpty: true
-}
+};
 
 Marracash.propTypes = {
   currency: PropTypes.object,
@@ -141,5 +151,5 @@ Marracash.propTypes = {
   style: PropTypes.object,
   id: PropTypes.string,
   placeholder: PropTypes.string,
-  allowEmpty: PropTypes.bool,
-}
+  allowEmpty: PropTypes.bool
+};
