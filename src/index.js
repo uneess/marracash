@@ -21,7 +21,7 @@ export default class Marracash extends PureComponent {
     this._handleFormatting = this._handleFormatting.bind(this);
   }
 
-  UNSAFE_componentWillMount() {
+  componentWillMount() {
     // listening for a click outside the input
     document.addEventListener('click', this._handleFormatting, false);
   }
