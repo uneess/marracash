@@ -57,6 +57,7 @@ export default class Marracash extends PureComponent {
   }
 
   getReturnedPrice(val, decimal) {
+    if (!val) return val;
     return parseFloat((accounting.unformat(val, decimal) * 100).toFixed(2));
   }
 
@@ -78,11 +79,7 @@ export default class Marracash extends PureComponent {
     this.setState(
       {
         price_shown
-      },
-      () =>
-        this.props.onChange(
-          this.getReturnedPrice(price_shown, currency.decimal)
-        )
+      }
     );
   }
 
