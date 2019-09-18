@@ -25,7 +25,7 @@ export default class Marracash extends PureComponent {
     this._handleFormatting = this._handleFormatting.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     // listening for a click outside the input
     document.addEventListener("click", this._handleFormatting, false);
   }
@@ -62,6 +62,8 @@ export default class Marracash extends PureComponent {
   }
 
   _handleFormatting(e) {
+    if (!this.input) return;
+
     let { value } = this.input;
     // Value didn't change or the area clicked in is the same as input area will result in stopping the process
     if (this.input.contains(e.target)) return;
