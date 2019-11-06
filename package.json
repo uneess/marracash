@@ -20,8 +20,9 @@
   "homepage": "https://bitbucket.org/veylinx/vx-price-input-lib#readme",
   "dependencies": {
     "accounting": "^0.4.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "lodash.debounce": "^4.0.8",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
@@ -29,6 +30,7 @@
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.5.5",
+    "@rollup/plugin-alias": "^2.2.0",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.8.0",
     "babel-plugin-external-helpers": "^6.22.0",

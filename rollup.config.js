@@ -4,7 +4,6 @@ import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot';
 import pkg from './package.json';
-
 import postcss from 'rollup-plugin-postcss';
 
 export default {
