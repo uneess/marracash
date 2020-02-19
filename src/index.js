@@ -86,6 +86,9 @@ export default class Marracash extends PureComponent {
   }
 
   handlePriceChange(e) {
+    if (this.props.disabled) {
+      return;
+    }
     // Price value gets unformated and updated in the state
     // Price_shown remains if not empty
     // AllowEmpty === true and value is '' will result in empty input value
@@ -109,10 +112,11 @@ export default class Marracash extends PureComponent {
 
   render() {
     const { price_shown } = this.state;
-    const { className, style, id, placeholder } = this.props;
+    const { className, style, id, placeholder, disabled } = this.props;
 
     return (
       <input
+        disabled={disabled}
         style={style}
         placeholder={placeholder}
         className={className}
@@ -133,6 +137,7 @@ Marracash.defaultProps = {
     symbol: "€",
     precision: 2
   },
+  disabled: false,
   showSymbol: true,
   defaultValue: 0,
   className: "vx-price-input",
@@ -143,6 +148,7 @@ Marracash.defaultProps = {
 
 Marracash.propTypes = {
   currency: PropTypes.object,
+  disabled: PropTypes.bool,
   onChange: PropTypes.func,
   showSymbol: PropTypes.bool,
   defaultValue: PropTypes.number,

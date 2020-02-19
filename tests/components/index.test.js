@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from "react-test-renderer";
 import Marracash from '../../src';
 
-describe("Price input component", () => {  
+describe("Price input component", () => {
   test("Matches the snapshot", () => {
     const component = renderer.create(<Marracash></Marracash>, );
     let tree = component.toJSON()
@@ -15,6 +15,7 @@ describe("Price input component", () => {
 
     const currency_object = {
       onChange: () => {},
+      disabled: false,
       currency: {
         decimal: ",",
         thousand: ".",
@@ -69,5 +70,37 @@ describe("Price input component", () => {
     const testInstance = Component.root;
 
     expect(testInstance.findByType('input').props.placeholder).toEqual("Add value");
+  })
+
+  test("Input to have disabled set to false", () => {
+    const Component = renderer.create(<Marracash />);
+    const testInstance = Component.root;
+
+    expect(testInstance.findByType('input').props.disabled).toEqual(false);
+  })
+
+  test("Input to have disabled set to true", () => {
+    const Component = renderer.create(<Marracash disabled={true} />);
+    const testInstance = Component.root;
+
+    expect(testInstance.findByType('input').props.disabled).toEqual(true);
+  })
+
+  test("Make sure disabled input doesn't accept user key input", () => {
+    const Component = renderer.create(<Marracash disabled={true} defaultValue={1000}/>);
+    const testInstance = Component.root;
+
+    testInstance.findByType('input').props.onChange({ target: { value: "9"}});
+
+    expect(testInstance.findByType('input').props.value).toEqual("€10,00");
+  })
+
+  test("Make sure enabled input accepts user key input", () => {
+    const Component = renderer.create(<Marracash defaultValue={1000}/>);
+    const testInstance = Component.root;
+
+    testInstance.findByType('input').props.onChange({ target: { value: "9"}});
+
+    expect(testInstance.findByType('input').props.value).toEqual("9");
   })
 });

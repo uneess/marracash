@@ -49,6 +49,7 @@ import 'marracash/dist/styles.css';
 | Props        | definition           | required  | type | default value |
 | :-----------: |:-------------:| :-----:| :-----: | :---------:
 | currency    | Object containing precision, symbol, decimal and thousand | false | object |  { decimal: ",", thousand: ".", symbol: "€", precision: 2} |
+| disabled | disable or enable the input |   false | boolean | FALSE |
 | showSymbol | Show or hide the currency symbol |   false | boolean | TRUE |
 | id    | To override default id | false | string | vx-price-input|
 | styles    | Provide inline styles to input element | false | object | |
@@ -56,7 +57,7 @@ import 'marracash/dist/styles.css';
 | className    | Provide placeholder to input element | false | string | |
 | onChange    | Function that sends back the price entered whenever a change is made | false | Function | 0 |
 | AllowEmpty    | Ability to control what happens if price input gets cleared | false | boolean | TRUE |
-| defaultValue | Default value provided to the input element in **cents** | false | number | | 
+| defaultValue | Default value provided to the input element in **cents** | false | number | |
 
 
 ## Running the tests
